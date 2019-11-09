@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Snack Cart</title>
+	<link rel="stylesheet" type="text/css" href="cartVisuals.css" />
+</head>
+<body>
+	<h1>Amazon Cart Snacks</h1>
+
+	<!--Creates table to hold table data-->
+	<div class="container">
+		<!--align attribute aligns the table within the div container-->
+		<table class="cart" align="center">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Item</th>
+					<th>Picture</th>
+					<th>Price</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Bowen</td>
+					<!--a tag adds hyperlink to item under the name "Beef Jerky"-->
+					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
+					<!--img tag adds picture and is self-closing-->
+					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
+					<td>24.95</td>
+					<!--below adds a button-->
+					<td class="text-center"><button type="button" class="btn">Remove</button></td>
+				</tr>
+				<tr>
+					<td>Bowen</td>
+					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
+					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
+					<td>24.95</td>
+					<td class="text-center"><button type="button" class="btn">Remove</button></td>
+				</tr>
+				<tr>
+					<td>Bowen</td>
+					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
+					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
+					<td>24.95</td>
+					<td class="text-center"><button type="button" class="btn">Remove</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!--input form for adding row to table-->
+	<div class="formContainer">
+		<form>
+			<input type="text" id="name" placeholder="Your Name">
+			<input type="text" id="itemLink" placeholder="Item Link">
+			<input type="text" id="itemName" placeholder="Item Name">
+			<input type="button" class="addRow" value="Add">
+		</form>
+	</div>
+
+	<!--Deletes corresponding row when "Remove" button is clicked.-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(document).on('click','button.btn',function(){
+			$(this).closest('tr').remove();
+			return false;
+		});
+	</script>
+
+	<!--Adds a row to table based on above input-->
+	<script>
+		$(document).ready(function() {
+			$(".addRow").click(function() {
+				var _name = $("#name").val();
+				var _itemLink = $("#itemLink").val();
+				var _itemName = $("#itemName").val();
+				var markup = "<tr><td>" + _name + "</td><td><a href='" + _itemLink + "'>" + _itemName + "</a></td><td class='text-center'><button type='button' class='btn'>Remove</button></td></tr>";
+				$(".cart tbody").append(markup);
+			});
+		});
+	</script>
+
+</body>
+</html>

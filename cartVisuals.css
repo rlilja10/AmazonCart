@@ -1,0 +1,53 @@
+h1 {
+	text-align: center;
+}
+
+.container {
+	width: 758px;
+	margin-right: auto;
+	margin-left: auto;
+	float: none;
+}
+
+/*centers the form tag within the div formContainer*/
+.formContainer {
+	display: block;
+	text-align: center;
+}
+
+.table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.table, th, td {
+	border: 1px solid lightgrey;
+	padding: 10px;
+}
+
+.table th {
+	height: 25px;
+}
+
+.table td {
+	width: 300px;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+}
+
+.btn {
+	background-color: darkred;
+	color: white;
+	padding: 8px 20px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.text-enter {
+	text-align: center;
+	vertical-align: center;
+}

@@ -69,13 +69,44 @@
 	</script>
 
 	<!--Adds a row to table based on above input-->
-	<script>
+	<!--<script>
 		$(document).ready(function() {
 			$(".addRow").click(function() {
 				var _name = $("#name").val();
 				var _itemLink = $("#itemLink").val();
 				var _itemName = $("#itemName").val();
+
 				var markup = "<tr><td>" + _name + "</td><td><a href='" + _itemLink + "'>" + _itemName + "</a></td><td class='text-center'><button type='button' class='btn'>Remove</button></td></tr>";
+				$(".cart tbody").append(markup);
+			});
+		});
+	</script>-->
+
+	<script>
+		var _name = "default";
+		var _itemLink = "default";
+		var _itemName = "default";
+		var _price = 0;
+
+		$(document).ready(function() {
+			$(".addRow").click(function() {
+				_name = $("#name").val();
+				_itemLink = $("#itemLink").val();
+				_itemName = $("#itemName").val();
+
+				//calls can be blocked if not origined from the localhost due to Cross-Origin Resource Sharing(CORS) or Access-Control-Allow-Origin error in the web browser's console when the request is sent.
+				//calls are currently from Safari or the current web browser, so the Python file had to me modified to all access
+				fetch('http://localhost:5000/get_price?url='+_itemLink)
+    				.then(function (response) {
+        				return response.text();
+    				}).then(function (text) {
+        				console.log('GET response text:');
+        				console.log(text); //print the greeting as text
+        				_price = text;
+        				console.log(_price);
+    				});
+
+				var markup = "<tr><td>" + _name + "</td><td><a href='" + _itemLink + "'>" + _itemName + "</a></td><td>" + _price + "</td><td class='text-center'><button type='button' class='btn'>Remove</button></td></tr>";
 				$(".cart tbody").append(markup);
 			});
 		});

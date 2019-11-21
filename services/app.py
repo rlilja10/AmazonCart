@@ -1,11 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-import utils
+from util import utils
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
+def index():
+    return render_template("cart.html")
+
+@app.route('/health_check')
 def health_check():
     return "Healthy\n"
 

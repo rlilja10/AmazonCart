@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Snack Cart</title>
+	<link rel="stylesheet" type="text/css" href="cartVisuals.css" />
+</head>
+<body>
+	<h1>Amazon Cart Snacks</h1>
+
+	<!--Creates table to hold table data-->
+	<div class="container">
+		<!--Align attribute aligns the table within the div container-->
+		<table id="cart" class="cart" align="center">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Item</th>
+					<th>Picture</th>
+					<th>Price</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Bowen</td>
+					<!--A tag adds hyperlink to item under the name "Beef Jerky"-->
+					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
+					<!--Img tag adds picture and is self-closing-->
+					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
+					<td>24.95</td>
+					<!--Below adds a button-->
+					<td class="text-center"><button type="button" class="btn">Remove</button></td>
+				</tr>
+				<tr>
+					<td>Bowen</td>
+					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
+					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
+					<td>24.95</td>
+					<td class="text-center"><button type="button" class="btn">Remove</button></td>
+				</tr>
+				<tr>
+					<td>Bowen</td>
+					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
+					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
+					<td>24.95</td>
+					<td class="text-center"><button type="button" class="btn">Remove</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!--Input form for adding row to table-->
+	<div class="formContainer">
+		<form>
+			<input type="text" id="name" placeholder="Your Name">
+			<input type="text" id="itemLink" placeholder="Item Link">
+			<input type="text" id="itemName" placeholder="Item Name">
+			<input type="button" id="addRow" class="addRow" value="Add">
+		</form>
+	</div>
+
+	<div class="priceContainer">
+		<!--creates an input textbox that's read only, takes no input-->
+		<form name="priceTotalBox">
+			<label for="text">Total:</label>
+			<input id="priceTotal" type="text" name="priceTotal" readonly="readonly">
+		</form>
+	</div>
+
+	<!--Deletes corresponding row when "Remove" button is clicked.-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script>
+		$(document).on('click','button.btn',function(){
+			$(this).closest('tr').remove();
+			return false;
+		});
+	</script>
+
+	<!--Adds a row to table based on above input-->
+	<script>
+
+		var _name = "default";
+		var _itemLink = "default";
+		var _itemName = "default";
+		var _prePrice = "default";
+		var _pictureLink = "default";
+		var _price = 0;
+
+		$(document).ready(function() {
+			$(".addRow").click(function() {
+				_name = $("#name").val();
+				_itemLink = $("#itemLink").val();
+				_itemName = $("#itemName").val();
+
+				//calls can be blocked if not origined from the localhost due to Cross-Origin Resource Sharing(CORS) or Access-Control-Allow-Origin error in the web browser's console when the request is sent.
+				//calls are currently from Safari or the current web browser, so the Python file had to me modified to all access
+				//Python file does not work because when you click on the website, the request is coming from client side so you run into the CORS issue.
+
+    			//test for webscraping, may change later due to availability
+    			//used website http://www.whateverorigin.org to bypass cross origin requests
+    			//didn't work because Amazon changed the ID and website URL of the product
+    			$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(_itemLink) + '&callback=?', function(data){
+    				//stores the contents of the HTML page
+					var websiteContents = data.contents;
+					//uses the match fucntion to use regex(regular expression) to get the price in the span tag
+					//_prePrice = websiteContents.match(/<span id="priceblock_dealprice" class="a-size-medium a-color-price priceBlockDealPriceString">(.*?)<\/span>/)[1];
+					try {
+						_prePrice = websiteContents.match(/span class="a-size-medium a-color-price priceBlockBuyingPriceString" id="priceblock_ourprice">(.*?)<\/span>/)[1];
+					}catch(error) {
+						console.error(error);
+					}
+
+					try {
+						_prePrice = websiteContents.match(/<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">(.*?)<\/span>/)[1];
+					}catch(error) {
+						console.error(error);
+					}
+
+					try {
+						_prePrice = websiteContents.match(/<span id="priceblock_dealprice" class="a-size-medium a-color-price priceBlockDealPriceString">(.*?)<\/span>/)[1];
+					}catch(error) {
+						console.error(error);
+					}
+
+					try {
+						_prePrice = websiteContents.match(/<span id="priceblock_saleprice" class="a-size-medium a-color-price priceBlockSalePriceString">(.*?)<\/span>/)[1];
+					}catch(error) {
+						console.error(error);
+					}
+
+					console.log(_prePrice);
+					//Converts _prePrice variable into a number from a string
+					_price = Number(_prePrice.replace(/[^0-9.-]+/g,""));
+					console.log(_price);
+
+					//Uses the jquery split function to parse through the HTML tags. The split function uses "imgTagWrapperId" as a delimiter and returns everything before and after that delimiter in an array without including the delimiter
+					_pictureLink = websiteContents.split("imgTagWrapperId")[1].split('src="\n')[1].split('\n')[0]
+					console.log(_pictureLink);
+
+					//adds a new row to the table but takes a few seconds of delay
+					var markup = "<tr><td>" + _name + "</td><td><a href='" + _itemLink + "'>" + _itemName + "</a></td><td><img src='" + _pictureLink + "'></td><td>" + _price + "</td><td class='text-center'><button type='button' class='btn'>Remove</button></td></tr>";
+					$(".cart tbody").append(markup);
+				});
+
+    			//sets a dislay time so that the add button can complete the above action before executing the calcTotal function
+				setTimeout(function() {
+					calcTotal();
+				}, 3000);
+			});
+		});
+	</script>
+
+	<!--Calculates total of all values in the Price column based on what gets added and removed-->
+	<script>
+		//Calculates total of all values in the Price column of the table by iterating through the all rows for the Price column indicated by cell 3
+		function calcTotal() {
+			var table = document.getElementById("cart"), sumVal = 0;
+
+			for(var i = 1; i < table.rows.length; i++)
+			{
+				sumVal = sumVal + parseFloat(table.rows[i].cells[3].innerHTML);
+			}
+			console.log(sumVal);
+			$('#priceTotal').val(sumVal);
+		};	
+	</script>
+
+</body>
+</html>

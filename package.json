@@ -1,0 +1,30 @@
+{
+  "name": "AmazonTest",
+  "version": "1.0.0",
+  "description": "Submits user entries for snacks and adds to list that can add and remove rows from the table.",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "esm": "^3.2.25",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r esm index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rlilja10/AmazonCart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rlilja10/AmazonCart/issues"
+  },
+  "homepage": "https://github.com/rlilja10/AmazonCart#readme"
+}

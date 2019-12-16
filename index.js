@@ -7,7 +7,7 @@
 
 import { getHTML, getAmazonPrice } from './Amazon_product_scrapper.js';
 
-const productURL = `https://www.amazon.com/Chocolate-Cookie-Valentines-Baskets-Thanksgiving/dp/B0081BE3E4?ref_=Oct_BSellerC_2255576011_0&pf_rd_p=9ac8ba87-e3d6-5942-a139-bdaec063908f&pf_rd_s=merchandised-search-6&pf_rd_t=101&pf_rd_i=2255576011&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=DEHR4MSNGBBW5ZCJ2JAP&pf_rd_r=DEHR4MSNGBBW5ZCJ2JAP&pf_rd_p=9ac8ba87-e3d6-5942-a139-bdaec063908f`;
+const productURL = `https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1575611710&smid=ATVPDKIKX0DER&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzRDBPSUVMV0g0QkgyJmVuY3J5cHRlZElkPUEwMjkxNzg4Mk9aRFAyVkRORDhQSyZlbmNyeXB0ZWRBZElkPUEwNDk2NzAyOUJYWVNPVVFGQ1lWJndpZGdldE5hbWU9c3BfYXRmJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==`;
 
 async function scrapePage() {
   const html = await getHTML(productURL);

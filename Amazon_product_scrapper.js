@@ -16,7 +16,7 @@ async function getHTML(productURL) {
 async function getAmazonPrice(html) {
   const $ = cherrio.load(html)
   
-  const span = $('#priceblock_saleprice')
+  const span = $('#priceblock_ourprice')
   return span.html();
 }
 

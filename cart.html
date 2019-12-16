@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<!--Due to security reasons, was unable to reliably scrape from Amazon.com and had to switch to books.-->
 <html>
 <head>
-	<title>Snack Cart</title>
+	<title>Books Cart</title>
 	<link rel="stylesheet" type="text/css" href="cartVisuals.css" />
 </head>
 <body>
-	<h1>Amazon Cart Snacks</h1>
+	<h1>Books to Scrape Cart</h1>
 
 	<!--Creates table to hold table data-->
 	<div class="container">
@@ -72,6 +73,7 @@
 	<script>
 		$(document).on('click','button.btn',function(){
 			$(this).closest('tr').remove();
+			calcTotal();
 			return false;
 		});
 	</script>
@@ -87,6 +89,9 @@
 		var _price = 0;
 
 		$(document).ready(function() {
+			//calculates Total before row is added
+			calcTotal();
+
 			$(".addRow").click(function() {
 				_name = $("#name").val();
 				_itemLink = $("#itemLink").val();
@@ -102,28 +107,13 @@
     			$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(_itemLink) + '&callback=?', function(data){
     				//stores the contents of the HTML page
 					var websiteContents = data.contents;
+
 					//uses the match fucntion to use regex(regular expression) to get the price in the span tag
 					//_prePrice = websiteContents.match(/<span id="priceblock_dealprice" class="a-size-medium a-color-price priceBlockDealPriceString">(.*?)<\/span>/)[1];
+					//switch the Ebay since Amazon caught on and blocked this computer's IP address
+					//trying to setup fake ecommerce website using Wordpress, XAMPP for the server, 
 					try {
-						_prePrice = websiteContents.match(/span class="a-size-medium a-color-price priceBlockBuyingPriceString" id="priceblock_ourprice">(.*?)<\/span>/)[1];
-					}catch(error) {
-						console.error(error);
-					}
-
-					try {
-						_prePrice = websiteContents.match(/<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">(.*?)<\/span>/)[1];
-					}catch(error) {
-						console.error(error);
-					}
-
-					try {
-						_prePrice = websiteContents.match(/<span id="priceblock_dealprice" class="a-size-medium a-color-price priceBlockDealPriceString">(.*?)<\/span>/)[1];
-					}catch(error) {
-						console.error(error);
-					}
-
-					try {
-						_prePrice = websiteContents.match(/<span id="priceblock_saleprice" class="a-size-medium a-color-price priceBlockSalePriceString">(.*?)<\/span>/)[1];
+						_prePrice = websiteContents.split('class="price_color">')[1].split('<')[0];
 					}catch(error) {
 						console.error(error);
 					}
@@ -134,7 +124,9 @@
 					console.log(_price);
 
 					//Uses the jquery split function to parse through the HTML tags. The split function uses "imgTagWrapperId" as a delimiter and returns everything before and after that delimiter in an array without including the delimiter
-					_pictureLink = websiteContents.split("imgTagWrapperId")[1].split('src="\n')[1].split('\n')[0]
+					_pictureLink = websiteContents.split('<img src="')[1].split('" ')[0];
+					//_pictureLink = websiteContents.split('<img')[1].split('"id=icImg"')[1].split('src="')[1].split(' ')[0];
+					//above works for Amazon.com
 					console.log(_pictureLink);
 
 					//adds a new row to the table but takes a few seconds of delay
@@ -145,7 +137,7 @@
     			//sets a dislay time so that the add button can complete the above action before executing the calcTotal function
 				setTimeout(function() {
 					calcTotal();
-				}, 3000);
+				}, 2000);
 			});
 		});
 	</script>
@@ -161,7 +153,7 @@
 				sumVal = sumVal + parseFloat(table.rows[i].cells[3].innerHTML);
 			}
 			console.log(sumVal);
-			$('#priceTotal').val(sumVal);
+			$('#priceTotal').val('$' + sumVal);
 		};	
 	</script>
 

@@ -23,27 +23,13 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Bowen</td>
+					<td>Test Item</td>
 					<!--A tag adds hyperlink to item under the name "Beef Jerky"-->
 					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
 					<!--Img tag adds picture and is self-closing-->
 					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
 					<td>24.95</td>
 					<!--Below adds a button-->
-					<td class="text-center"><button type="button" class="btn">Remove</button></td>
-				</tr>
-				<tr>
-					<td>Bowen</td>
-					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
-					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
-					<td>24.95</td>
-					<td class="text-center"><button type="button" class="btn">Remove</button></td>
-				</tr>
-				<tr>
-					<td>Bowen</td>
-					<td><a href="https://www.amazon.com/Jack-Links-Jerky-Multipack-Teriyaki/dp/B07NR396XP/ref=sr_1_1_sspa?keywords=beef+jerky&qid=1573108277&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyTkU2MjBUQkJJS0NFJmVuY3J5cHRlZElkPUEwNDM1MzM1MzAwTEVHUERGNFFGSyZlbmNyeXB0ZWRBZElkPUEwNDY1MzQ3MkNQU0hIQTREWTdBOCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Beef Jerky</a></td>
-					<td><img src="https://images-na.ssl-images-amazon.com/images/I/81khcmifNcL._SL1500_.jpg"></td>
-					<td>24.95</td>
 					<td class="text-center"><button type="button" class="btn">Remove</button></td>
 				</tr>
 			</tbody>
@@ -125,6 +111,9 @@
 
 					//Uses the jquery split function to parse through the HTML tags. The split function uses "imgTagWrapperId" as a delimiter and returns everything before and after that delimiter in an array without including the delimiter
 					_pictureLink = websiteContents.split('<img src="')[1].split('" ')[0];
+					_pictureLink = _pictureLink.substr(5);
+					//modifies _picturelink to have real link to picture rather than a absolute link that would only work if I had the pictures saved locally, previously started link with "../..", replaced with "http://books.toscrape.com"
+					_pictureLink = "http://books.toscrape.com" + _pictureLink;
 					//_pictureLink = websiteContents.split('<img')[1].split('"id=icImg"')[1].split('src="')[1].split(' ')[0];
 					//above works for Amazon.com
 					console.log(_pictureLink);
@@ -137,7 +126,7 @@
     			//sets a dislay time so that the add button can complete the above action before executing the calcTotal function
 				setTimeout(function() {
 					calcTotal();
-				}, 2000);
+				}, 1000);
 			});
 		});
 	</script>
@@ -153,7 +142,7 @@
 				sumVal = sumVal + parseFloat(table.rows[i].cells[3].innerHTML);
 			}
 			console.log(sumVal);
-			$('#priceTotal').val('$' + sumVal);
+			$('#priceTotal').val('$' + sumVal.toFixed(2));
 		};	
 	</script>
 

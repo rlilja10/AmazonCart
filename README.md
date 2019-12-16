@@ -1,5 +1,5 @@
 # AmazonCart
-Submits user entries for snacks and adds to list that can add and remove rows from the table.
+Submits user entries for books and adds to table that can add and remove rows with buttons.
 
 # Running
 Open cart.html file using browser, find a Books to Scrape product, copy and paste link with Name and product name or alias, and click Add button to add to cart. Remove button removes from cart. Total price will automatically calculate based on what's in the cart.

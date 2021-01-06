@@ -4,7 +4,7 @@
   "description": "Submits user entries for snacks and adds to list that can add and remove rows from the table.",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.3",
     "esm": "^3.2.25",
     "request": "^2.88.0"
